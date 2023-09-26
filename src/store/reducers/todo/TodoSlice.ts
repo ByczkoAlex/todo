@@ -5,9 +5,10 @@ type TodoState = {
     categories: Array<categoryType>
 }
 
-type categoryType = {
+export type categoryType = {
     name: string,
     tasks: Array<TaskForCategoryType>
+    id: any
 }
 
 type TaskForCategoryType = {
@@ -18,10 +19,11 @@ type TaskForCategoryType = {
 const initialState: TodoState = {
     disabled: false,
     categories: [
-        {
-            name: '',
-            tasks: []
-        }
+        // {
+        //     name: '',
+        //     tasks: [],
+        //     id: ''
+        // }
     ]
 }
 
@@ -29,10 +31,18 @@ export const todoSlice = createSlice({
     name: 'todo',
     initialState,
     reducers: {
+        setCategory(state, action) {
+            if (state.categories.length === 0) {
+                state.categories = [action.payload]
+            }
 
+            if (state.categories.length > 0) {
+                console.log(action.payload)
+            }
+        }
     }
 })
 
-export const {} = todoSlice.actions;
+export const {setCategory} = todoSlice.actions;
 
 export default todoSlice.reducer

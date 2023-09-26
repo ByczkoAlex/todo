@@ -3,15 +3,28 @@ import s from './Form.module.css'
 import {useFormik} from "formik";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomBtn from "../CustomBtn/CustomBtn";
+import { v4 as uuidv4 } from 'uuid';
+import {useAppDispatch} from "../../hooks/redux";
+import {CreateCategory} from "../../store/ActionCreators/ActionCreators";
+
 
 const Form = () => {
 
-    const createTaskFormik = useFormik({
+    const dispatch = useAppDispatch()
+
+    const createCategoryFormik = useFormik({
         initialValues: {
-            category: '',
+            name: '',
+            tasks: [],
+            id: ''
         },
         onSubmit: values => {
-            console.log(values)
+            const prepareValues = {
+                ...values,
+                id: uuidv4()
+            }
+
+            dispatch(CreateCategory(prepareValues))
         }
     })
 
@@ -22,12 +35,12 @@ const Form = () => {
                 Please enter category name
             </div>
 
-            <form className={s.form} onSubmit={createTaskFormik.handleSubmit}>
+            <form className={s.form} onSubmit={createCategoryFormik.handleSubmit}>
                 <CustomInput
-                    id={"category"}
-                    name={"category"}
-                    value={createTaskFormik.values.category}
-                    onChange={createTaskFormik.handleChange}
+                    id={"name"}
+                    name={"name"}
+                    value={createCategoryFormik.values.name}
+                    onChange={createCategoryFormik.handleChange}
                 />
                 <div className={s.button_wrapper}>
                     <CustomBtn type={"submit"} title={"Create"}/>
