@@ -1,0 +1,14 @@
+.app {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    padding: 100px 100px;
+    box-sizing: border-box;
+    height: 100vh;
+    background: teal;
+    font-family: "Mulish" , sans-serif;
+}
+
+.form_wrapper {
+
+}
