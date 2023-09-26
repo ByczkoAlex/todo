@@ -1,0 +1,14 @@
+.input {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #EEEFEF;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #2A2E37;
+    outline: none;
+}
