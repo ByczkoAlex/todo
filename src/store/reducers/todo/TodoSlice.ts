@@ -21,14 +21,7 @@ export type TaskForCategoryType = {
 
 const initialState: TodoStateType = {
     disabled: false,
-    categories: [
-        {
-            name: '',
-            tasks: [],
-            id: '',
-            creationDate: ''
-        }
-    ]
+    categories: []
 }
 
 export const todoSlice = createSlice({
