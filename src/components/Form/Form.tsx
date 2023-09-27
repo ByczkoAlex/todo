@@ -18,13 +18,15 @@ const Form = () => {
             tasks: [],
             id: ''
         },
-        onSubmit: values => {
+        onSubmit: (values, formikHelpers) => {
             const prepareValues = {
                 ...values,
                 id: uuidv4()
             }
 
             dispatch(createCategoryThunk(prepareValues))
+
+            formikHelpers.resetForm()
         }
     })
 

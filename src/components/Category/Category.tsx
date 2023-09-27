@@ -6,9 +6,9 @@ import {useFormik} from "formik";
 import {v4 as uuidv4} from "uuid";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomBtn from "../CustomBtn/CustomBtn";
-import {List} from "antd";
-import {deleteCategoryThunk} from "../../store/ActionCreators/ActionCreators";
+import {CreateTaskThunk, deleteCategoryThunk} from "../../store/ActionCreators/ActionCreators";
 import {useAppDispatch} from "../../hooks/redux";
+import Task from "../Task/Task";
 
 type PropsType = {
     name: string,
@@ -23,15 +23,18 @@ const Category = (props: PropsType) => {
     const createTaskFormik = useFormik({
         initialValues: {
             name: '',
-            id: ''
+            taskId: '',
+            categoryId: props.id
         },
-        onSubmit: values => {
+        onSubmit: (values, formikHelpers) => {
             const prepareValues = {
                 ...values,
-                id: uuidv4()
+                taskId: uuidv4()
             }
 
-            // dispatch(CreateCategory(prepareValues))
+            dispatch(CreateTaskThunk(prepareValues))
+
+            formikHelpers.resetForm()
         }
     })
 
@@ -57,7 +60,12 @@ const Category = (props: PropsType) => {
             </form>
 
             <div className={s.tasks_list_block}>
-
+                {props?.tasks?.map((task) =>
+                    <Task
+                        key={task.taskId}
+                        id={task.taskId}
+                        name={task.name}/>
+                )}
             </div>
         </div>
     );

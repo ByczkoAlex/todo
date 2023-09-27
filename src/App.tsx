@@ -17,7 +17,12 @@ function App() {
             <div className={s.tasks_list_wrapper}>
                 {
                     CategoryArray?.map((category: categoryType) =>
-                        <Category key={category.id} id={category.id} name={category.name} tasks={category.tasks}/>)
+                        <Category key={category.id}
+                                  id={category.id}
+                                  name={category.name}
+                                  tasks={category.tasks}
+                        />
+                    )
                 }
             </div>
         </div>
