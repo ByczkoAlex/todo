@@ -41,6 +41,7 @@
 .add_task_form {
     display: flex;
     gap: 8px;
+    position: relative;
 }
 
 .tasks_list_block {
@@ -48,6 +49,15 @@
     flex-direction: column;
     gap: 8px;
     margin-top: 32px;
+}
+
+.error {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FF6471;
+    position: absolute;
+    bottom: -18px
 }
 
 @media only screen

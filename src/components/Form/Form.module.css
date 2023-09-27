@@ -8,6 +8,7 @@
 .form {
     display: flex;
     gap: 8px;
+    position: relative;
 }
 
 .title {
@@ -16,4 +17,13 @@
 
 .button_wrapper {
     width: 180px;
+}
+
+.error {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FF6471;
+    position: absolute;
+    bottom: -18px
 }

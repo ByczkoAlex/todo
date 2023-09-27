@@ -6,7 +6,11 @@ import CustomBtn from "../CustomBtn/CustomBtn";
 import { v4 as uuidv4 } from 'uuid';
 import {useAppDispatch} from "../../hooks/redux";
 import {createCategoryThunk} from "../../store/ActionCreators/ActionCreators";
+import * as yup from "yup";
 
+const validationSchema = yup.object({
+    name: yup.string().required( 'required field'),
+})
 
 const Form = () => {
 
@@ -19,6 +23,7 @@ const Form = () => {
             id: '',
             creationDate: ''
         },
+        validationSchema,
         onSubmit: (values, formikHelpers) => {
             const creationDate = new Date()
             const prepareValues = {
@@ -47,13 +52,17 @@ const Form = () => {
                     value={createCategoryFormik.values.name}
                     onChange={createCategoryFormik.handleChange}
                 />
+                {
+                    createCategoryFormik.touched.name &&
+                    createCategoryFormik.errors.name &&
+                    <div className={s.error}>
+                        {createCategoryFormik.errors.name}
+                    </div>
+                }
                 <div className={s.button_wrapper}>
                     <CustomBtn type={"submit"} title={"Create"}/>
                 </div>
             </form>
-
-
-
         </div>
     );
 };

@@ -9,6 +9,7 @@ import CustomBtn from "../CustomBtn/CustomBtn";
 import {createTaskThunk, deleteCategoryThunk} from "../../store/ActionCreators/ActionCreators";
 import {useAppDispatch} from "../../hooks/redux";
 import Task from "../Task/Task";
+import * as yup from "yup";
 
 type PropsType = {
     name: string,
@@ -16,6 +17,10 @@ type PropsType = {
     id: string
     creationDate: string
 }
+
+const validationSchema = yup.object({
+    name: yup.string().required( 'required field'),
+})
 
 const Category = (props: PropsType) => {
 
@@ -28,6 +33,7 @@ const Category = (props: PropsType) => {
             categoryId: props.id,
             creationDate: ''
         },
+        validationSchema,
         onSubmit: (values, formikHelpers) => {
             const creationDate = new Date()
             const prepareValues = {
@@ -63,6 +69,13 @@ const Category = (props: PropsType) => {
                     value={createTaskFormik.values.name}
                     onChange={createTaskFormik.handleChange}
                 />
+                {
+                    createTaskFormik.touched.name &&
+                    createTaskFormik.errors.name &&
+                    <div className={s.error}>
+                        {createTaskFormik.errors.name}
+                    </div>
+                }
                 <div className={s.button_wrapper}>
                     <CustomBtn type={"submit"} title={"Add"}/>
                 </div>
