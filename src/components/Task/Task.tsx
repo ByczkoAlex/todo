@@ -9,6 +9,7 @@ type PropsType = {
     name: string
     categoryId: string
     taskId: string
+    creationDate: string
 }
 
 const Task = (props: PropsType) => {
@@ -34,7 +35,7 @@ const Task = (props: PropsType) => {
         <div className={s.task_wrapper}>
             <div className={s.flex}>
                 <EditOutlined className={s.edit} onClick={activateEditMode}/>
-                <div className={s.task_name}>
+                <div>
                     {
                         editMode
                             ? <CustomInput value={title}
@@ -44,7 +45,12 @@ const Task = (props: PropsType) => {
                                            id={"editTask"}
                                            name={"editTask"}
                             />
-                            : <span>{props.name}</span>
+                            : <div className={s.task_info_block}>
+                                <span className={s.task_name}>{props.name}</span>
+                                <span className={s.creation_date}>
+                                    {props.creationDate}
+                                </span>
+                              </div>
                     }
 
                 </div>

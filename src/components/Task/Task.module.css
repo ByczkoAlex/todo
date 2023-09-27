@@ -6,6 +6,12 @@
     justify-content: space-between;
 }
 
+.task_info_block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .flex {
     display: flex;
     align-items: center;
@@ -21,8 +27,15 @@
     font-size: 14px;
     color: #EEEFEF;
     word-break: break-all;
+    width: 250px;
 }
 
 .delete {
     cursor: pointer;
+}
+
+.creation_date {
+    font-size: 12px;
+    font-weight: 400;
+    color: beige;
 }

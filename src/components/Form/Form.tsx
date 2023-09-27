@@ -16,12 +16,15 @@ const Form = () => {
         initialValues: {
             name: '',
             tasks: [],
-            id: ''
+            id: '',
+            creationDate: ''
         },
         onSubmit: (values, formikHelpers) => {
+            const creationDate = new Date()
             const prepareValues = {
                 ...values,
-                id: uuidv4()
+                id: uuidv4(),
+                creationDate: creationDate.toDateString()
             }
 
             dispatch(createCategoryThunk(prepareValues))

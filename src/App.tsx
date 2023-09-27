@@ -21,6 +21,7 @@ function App() {
                                   id={category.id}
                                   name={category.name}
                                   tasks={category.tasks}
+                                  creationDate={category.creationDate}
                         />
                     )
                 }

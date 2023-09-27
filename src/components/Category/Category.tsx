@@ -14,6 +14,7 @@ type PropsType = {
     name: string,
     tasks: TaskForCategoryType[]
     id: string
+    creationDate: string
 }
 
 const Category = (props: PropsType) => {
@@ -24,12 +25,15 @@ const Category = (props: PropsType) => {
         initialValues: {
             name: '',
             taskId: '',
-            categoryId: props.id
+            categoryId: props.id,
+            creationDate: ''
         },
         onSubmit: (values, formikHelpers) => {
+            const creationDate = new Date()
             const prepareValues = {
                 ...values,
-                taskId: uuidv4()
+                taskId: uuidv4(),
+                creationDate: creationDate.toDateString()
             }
 
             dispatch(createTaskThunk(prepareValues))
@@ -41,8 +45,13 @@ const Category = (props: PropsType) => {
     return (
         <div className={s.category}>
             <div className={s.category_header}>
-                <div className={s.category_name}>
-                    {props.name}
+                <div className={s.category_info_block}>
+                    <span className={s.category_name}>
+                        {props.name}
+                    </span>
+                    <span className={s.creation_date}>
+                        {props.creationDate}
+                    </span>
                 </div>
                 <DeleteOutlined className={s.delete} onClick={() => dispatch(deleteCategoryThunk(props.id))}/>
             </div>
@@ -66,6 +75,7 @@ const Category = (props: PropsType) => {
                         taskId={task.taskId}
                         name={task.name}
                         categoryId={task.categoryId}
+                        creationDate={task.creationDate}
                     />
                 )}
             </div>

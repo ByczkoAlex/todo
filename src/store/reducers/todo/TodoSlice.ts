@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-type TodoState = {
+type TodoStateType = {
     disabled: boolean
     categories: Array<categoryType>
 }
@@ -9,21 +9,24 @@ export type categoryType = {
     name: string,
     tasks: Array<TaskForCategoryType>
     id: any
+    creationDate: string
 }
 
 export type TaskForCategoryType = {
-    name: string,
-    taskId: string,
+    name: string
+    taskId: string
     categoryId: string
+    creationDate: string
 }
 
-const initialState: TodoState = {
+const initialState: TodoStateType = {
     disabled: false,
     categories: [
         {
             name: '',
             tasks: [],
-            id: ''
+            id: '',
+            creationDate: ''
         }
     ]
 }
@@ -57,7 +60,6 @@ export const todoSlice = createSlice({
             })
         },
         editTask(state, action) {
-            console.log(action.payload)
             state.categories = state.categories.map((category: categoryType) => {
                 if (category.id === action.payload.task.categoryId) {
                     return {...category, tasks: category.tasks.map((t) => t.taskId === action.payload.task.taskId ?  {...t, name: action.payload.title} : t)}
