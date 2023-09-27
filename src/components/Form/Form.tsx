@@ -5,8 +5,12 @@ import CustomInput from "../CustomInput/CustomInput";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import { v4 as uuidv4 } from 'uuid';
 import {useAppDispatch} from "../../hooks/redux";
-import {CreateCategory} from "../../store/ActionCreators/ActionCreators";
+import {createCategoryThunk} from "../../store/ActionCreators/ActionCreators";
+import * as yup from "yup";
 
+const validationSchema = yup.object({
+    name: yup.string().required( 'required field'),
+})
 
 const Form = () => {
 
@@ -16,15 +20,21 @@ const Form = () => {
         initialValues: {
             name: '',
             tasks: [],
-            id: ''
+            id: '',
+            creationDate: ''
         },
-        onSubmit: values => {
+        validationSchema,
+        onSubmit: (values, formikHelpers) => {
+            const creationDate = new Date()
             const prepareValues = {
                 ...values,
-                id: uuidv4()
+                id: uuidv4(),
+                creationDate: creationDate.toDateString()
             }
 
-            dispatch(CreateCategory(prepareValues))
+            dispatch(createCategoryThunk(prepareValues))
+
+            formikHelpers.resetForm()
         }
     })
 
@@ -42,13 +52,17 @@ const Form = () => {
                     value={createCategoryFormik.values.name}
                     onChange={createCategoryFormik.handleChange}
                 />
+                {
+                    createCategoryFormik.touched.name &&
+                    createCategoryFormik.errors.name &&
+                    <div className={s.error}>
+                        {createCategoryFormik.errors.name}
+                    </div>
+                }
                 <div className={s.button_wrapper}>
                     <CustomBtn type={"submit"} title={"Create"}/>
                 </div>
             </form>
-
-
-
         </div>
     );
 };

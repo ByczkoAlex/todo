@@ -1,0 +1,43 @@
+.task_wrapper {
+    width: 100%;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task_info_block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.task_name {
+    font-size: 14px;
+    color: #2A2E37;
+    word-break: break-all;
+    width: 250px;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+.creation_date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #2A2E37;
+}
+
+

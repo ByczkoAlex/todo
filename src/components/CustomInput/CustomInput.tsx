@@ -6,6 +6,8 @@ type propsType = {
     name: string
     value: string
     onChange: { (e: ChangeEvent<any>): void;}
+    autoFocus?: boolean
+    onBlur?: () => void
 }
 
 const CustomInput = (props: propsType) => {
