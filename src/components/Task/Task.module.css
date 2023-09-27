@@ -20,6 +20,7 @@
 .task_name {
     font-size: 14px;
     color: #EEEFEF;
+    word-break: break-all;
 }
 
 .delete {

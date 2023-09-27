@@ -48,10 +48,25 @@ export const todoSlice = createSlice({
                     return {...category, tasks: [action.payload, ...category.tasks]}
                 } else return {...category}
             })
-        }
+        },
+        deleteTask(state, action) {
+            state.categories = state.categories.map((category: categoryType) => {
+                if (category.id === action.payload.categoryId) {
+                    return {...category, tasks: category.tasks.filter((t) => t.taskId !== action.payload.taskId)}
+                } else return {...category}
+            })
+        },
+        editTask(state, action) {
+            console.log(action.payload)
+            state.categories = state.categories.map((category: categoryType) => {
+                if (category.id === action.payload.task.categoryId) {
+                    return {...category, tasks: category.tasks.map((t) => t.taskId === action.payload.task.taskId ?  {...t, name: action.payload.title} : t)}
+                } else return {...category}
+            })
+        },
     }
 })
 
-export const {setCategory, setTask, deleteCategory} = todoSlice.actions;
+export const {setCategory, setTask, deleteCategory, deleteTask, editTask} = todoSlice.actions;
 
 export default todoSlice.reducer

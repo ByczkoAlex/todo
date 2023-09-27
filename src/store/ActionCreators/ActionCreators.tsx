@@ -1,5 +1,12 @@
 import {AppDispatch} from "../store";
-import {categoryType, deleteCategory, setCategory, setTask, TaskForCategoryType} from "../reducers/todo/TodoSlice";
+import {
+    categoryType,
+    deleteCategory,
+    deleteTask, editTask,
+    setCategory,
+    setTask,
+    TaskForCategoryType
+} from "../reducers/todo/TodoSlice";
 
 export const createCategoryThunk = (category: categoryType) => (dispatch: AppDispatch) => {
     try {
@@ -17,9 +24,25 @@ export const deleteCategoryThunk = (id: string) => (dispatch: AppDispatch) => {
     }
 }
 
-export const CreateTaskThunk = (task: TaskForCategoryType) => (dispatch: AppDispatch) => {
+export const createTaskThunk = (task: TaskForCategoryType) => (dispatch: AppDispatch) => {
     try {
         dispatch(setTask(task))
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+export const deleteTaskThunk = (task: TaskForCategoryType) => (dispatch: AppDispatch) => {
+    try {
+        dispatch(deleteTask(task))
+    } catch (e) {
+        console.error(e)
+    }
+}
+
+export const editTaskThunk = (title: string, task: TaskForCategoryType) => (dispatch: AppDispatch) => {
+    try {
+        dispatch(editTask({title ,task}))
     } catch (e) {
         console.error(e)
     }

@@ -6,7 +6,7 @@ import {useFormik} from "formik";
 import {v4 as uuidv4} from "uuid";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomBtn from "../CustomBtn/CustomBtn";
-import {CreateTaskThunk, deleteCategoryThunk} from "../../store/ActionCreators/ActionCreators";
+import {createTaskThunk, deleteCategoryThunk} from "../../store/ActionCreators/ActionCreators";
 import {useAppDispatch} from "../../hooks/redux";
 import Task from "../Task/Task";
 
@@ -32,7 +32,7 @@ const Category = (props: PropsType) => {
                 taskId: uuidv4()
             }
 
-            dispatch(CreateTaskThunk(prepareValues))
+            dispatch(createTaskThunk(prepareValues))
 
             formikHelpers.resetForm()
         }
@@ -63,8 +63,10 @@ const Category = (props: PropsType) => {
                 {props?.tasks?.map((task) =>
                     <Task
                         key={task.taskId}
-                        id={task.taskId}
-                        name={task.name}/>
+                        taskId={task.taskId}
+                        name={task.name}
+                        categoryId={task.categoryId}
+                    />
                 )}
             </div>
         </div>
