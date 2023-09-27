@@ -11,7 +11,7 @@ export type categoryType = {
     id: any
 }
 
-type TaskForCategoryType = {
+export type TaskForCategoryType = {
     name: string,
     id: string
 }
@@ -34,15 +34,16 @@ export const todoSlice = createSlice({
         setCategory(state, action) {
             if (state.categories.length === 0) {
                 state.categories = [action.payload]
+            } else {
+                state.categories.push(action.payload)
             }
-
-            if (state.categories.length > 0) {
-                console.log(action.payload)
-            }
+        },
+        deleteCategory(state, action) {
+            state.categories = state.categories.filter((category) => category.id !== action.payload)
         }
     }
 })
 
-export const {setCategory} = todoSlice.actions;
+export const {setCategory, deleteCategory} = todoSlice.actions;
 
 export default todoSlice.reducer

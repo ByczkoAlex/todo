@@ -1,0 +1,38 @@
+.category {
+    width: 30%;
+    height: fit-content;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 3px 0 rgba(0,0,0,0.12);
+}
+
+.category_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.category_name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+.button_wrapper {
+    width: 100px;
+}
+
+.add_task_form {
+    display: flex;
+    gap: 8px;
+}
+
+.tasks_list_block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

@@ -5,7 +5,7 @@ import CustomInput from "../CustomInput/CustomInput";
 import CustomBtn from "../CustomBtn/CustomBtn";
 import { v4 as uuidv4 } from 'uuid';
 import {useAppDispatch} from "../../hooks/redux";
-import {CreateCategory} from "../../store/ActionCreators/ActionCreators";
+import {createCategoryThunk} from "../../store/ActionCreators/ActionCreators";
 
 
 const Form = () => {
@@ -24,7 +24,7 @@ const Form = () => {
                 id: uuidv4()
             }
 
-            dispatch(CreateCategory(prepareValues))
+            dispatch(createCategoryThunk(prepareValues))
         }
     })
 

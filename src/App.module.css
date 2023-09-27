@@ -1,6 +1,8 @@
 .app {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+
     width: 100vw;
     padding: 100px 100px;
     box-sizing: border-box;
@@ -10,5 +12,12 @@
 }
 
 .form_wrapper {
+    margin-bottom: 50px;
+}
 
+.tasks_list_wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
